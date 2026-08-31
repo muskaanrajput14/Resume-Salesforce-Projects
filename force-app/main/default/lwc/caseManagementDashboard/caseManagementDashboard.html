@@ -1,3 +1,265 @@
 <template>
-    <p>I am case management dashboard</p>
+
+    <lightning-card
+        title="Case Management Dashboard"
+        icon-name="standard:case">
+
+        <div class="dashboard-container slds-p-around_medium">
+
+            <!-- ============================
+                 DASHBOARD SUMMARY
+            ============================= -->
+
+            <div class="summary-grid slds-grid slds-wrap slds-gutters">
+
+                <!-- Total Cases -->
+                <div class="slds-col slds-size_1-of-1 slds-medium-size_1-of-4">
+
+                    <div class="summary-card card-total">
+
+                        <div class="card-content">
+
+                            <p class="card-label">
+                                Total Cases
+                            </p>
+
+                            <h2 class="card-value">
+                                {totalCases}
+                            </h2>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- Open Cases -->
+                <div class="slds-col slds-size_1-of-1 slds-medium-size_1-of-4">
+
+                    <div class="summary-card card-open">
+
+                        <div class="card-content">
+
+                            <p class="card-label">
+                                Open Cases
+                            </p>
+
+                            <h2 class="card-value">
+                                {openCases}
+                            </h2>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- High Priority -->
+                <div class="slds-col slds-size_1-of-1 slds-medium-size_1-of-4">
+
+                    <div class="summary-card card-high">
+
+                        <div class="card-content">
+
+                            <p class="card-label">
+                                High Priority
+                            </p>
+
+                            <h2 class="card-value">
+                                {highPriorityCases}
+                            </h2>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- Closed Today -->
+                <div class="slds-col slds-size_1-of-1 slds-medium-size_1-of-4">
+
+                    <div class="summary-card card-closed">
+
+                        <div class="card-content">
+
+                            <p class="card-label">
+                                Closed Today
+                            </p>
+
+                            <h2 class="card-value">
+                                {closedToday}
+                            </h2>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- ============================
+                 SEARCH / FILTER SECTION
+            ============================= -->
+
+            <div class="filter-section slds-m-top_large">
+
+                <div class="section-title">
+                    <h3>Search & Filter Cases</h3>
+                </div>
+
+                <div class="slds-grid slds-wrap slds-gutters">
+
+                    <!-- Search -->
+                    <div class="slds-col slds-size_1-of-1 slds-medium-size_1-of-3">
+
+                        <lightning-input
+                            type="search"
+                            label="Search Case"
+                            placeholder="Search by subject"
+                            value={searchKey}
+                            onchange={handleSearchChange}>
+                        </lightning-input>
+
+                    </div>
+
+
+                    <!-- Status -->
+                    <div class="slds-col slds-size_1-of-1 slds-medium-size_1-of-3">
+
+                        <lightning-combobox
+                            label="Status"
+                            value={selectedStatus}
+                            options={statusOptions}
+                            onchange={handleStatusChange}>
+                        </lightning-combobox>
+
+                    </div>
+
+
+                    <!-- Priority -->
+                    <div class="slds-col slds-size_1-of-1 slds-medium-size_1-of-3">
+
+                        <lightning-combobox
+                            label="Priority"
+                            value={selectedPriority}
+                            options={priorityOptions}
+                            onchange={handlePriorityChange}>
+                        </lightning-combobox>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- ============================
+                 BUTTONS
+            ============================= -->
+
+            <div class="action-section slds-m-top_medium">
+
+                <lightning-button
+                    label="Refresh"
+                    icon-name="utility:refresh"
+                    onclick={handleRefresh}>
+                </lightning-button>
+
+                <lightning-button
+                    class="process-button"
+                    label="Process Selected Cases"
+                    icon-name="utility:forward"
+                    variant="brand"
+                    onclick={handleProcessCases}>
+                </lightning-button>
+
+            </div>
+
+
+            <!-- ============================
+                 LOADING
+            ============================= -->
+
+            <template if:true={isLoading}>
+
+                <div class="loading-container">
+
+                    <lightning-spinner
+                        alternative-text="Loading"
+                        size="medium">
+                    </lightning-spinner>
+
+                </div>
+
+            </template>
+
+
+            <!-- ============================
+                 ERROR
+            ============================= -->
+
+            <template if:true={errorMessage}>
+
+                <div class="error-container">
+
+                    <lightning-icon
+                        icon-name="utility:error"
+                        alternative-text="Error"
+                        size="small">
+                    </lightning-icon>
+
+                    <span>
+                        {errorMessage}
+                    </span>
+
+                </div>
+
+            </template>
+
+
+            <!-- ============================
+                 CASE TABLE
+            ============================= -->
+
+            <div class="table-section slds-m-top_large">
+
+                <div class="table-header">
+
+                    <h3>
+                        Case Records
+                    </h3>
+
+                    <span class="case-count">
+                        {cases.length} Cases
+                    </span>
+
+                </div>
+
+                <div class="datatable-container">
+
+                    <lightning-datatable
+                        key-field="Id"
+                        data={cases}
+                        columns={columns}
+                        selected-rows={selectedCaseIds}
+                        onrowselection={handleRowSelection}
+                        hide-checkbox-column="false">
+                    </lightning-datatable>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </lightning-card>
+
 </template>
+
+
+

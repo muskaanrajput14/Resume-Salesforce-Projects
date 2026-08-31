@@ -1,0 +1,251 @@
+/* ================================
+   MAIN DASHBOARD
+================================ */
+
+.dashboard-container {
+    background: #f4f6f9;
+    min-height: 500px;
+}
+
+
+/* ================================
+   SUMMARY CARDS
+================================ */
+
+.summary-grid {
+    margin-bottom: 10px;
+}
+
+.summary-card {
+    position: relative;
+    background: #ffffff;
+    border-radius: 10px;
+    padding: 22px 20px;
+    min-height: 120px;
+    border: 1px solid #e5e7eb;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+.summary-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.12);
+}
+
+
+/* Colored left border */
+
+.card-total {
+    border-left: 5px solid #0176d3;
+}
+
+.card-open {
+    border-left: 5px solid #2e844a;
+}
+
+.card-high {
+    border-left: 5px solid #ba0517;
+}
+
+.card-closed {
+    border-left: 5px solid #5c5c5c;
+}
+
+
+/* Card content */
+
+.card-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 100%;
+}
+
+.card-label {
+    margin: 0 0 8px 0;
+    color: #5f6b7a;
+    font-size: 14px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.4px;
+}
+
+.card-value {
+    margin: 0;
+    font-size: 32px;
+    line-height: 1.2;
+    font-weight: 700;
+    color: #181818;
+}
+
+
+/* ================================
+   FILTER SECTION
+================================ */
+
+.filter-section {
+    background: #ffffff;
+    border: 1px solid #e5e7eb;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.04);
+}
+
+.section-title {
+    margin-bottom: 15px;
+}
+
+.section-title h3 {
+    margin: 0;
+    color: #181818;
+    font-size: 17px;
+    font-weight: 700;
+}
+
+
+/* ================================
+   ACTION BUTTONS
+================================ */
+
+.action-section {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 5px 0;
+}
+
+.process-button {
+    margin-left: 5px;
+}
+
+
+/* ================================
+   LOADING
+================================ */
+
+.loading-container {
+    position: relative;
+    min-height: 80px;
+    margin-top: 15px;
+}
+
+
+/* ================================
+   ERROR MESSAGE
+================================ */
+
+.error-container {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    margin-top: 15px;
+    padding: 12px 16px;
+
+    background: #fef1ee;
+    border: 1px solid #ea6a47;
+    border-left: 5px solid #ba0517;
+
+    border-radius: 6px;
+
+    color: #8e030f;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+
+/* ================================
+   TABLE
+================================ */
+
+.table-section {
+    background: #ffffff;
+    border: 1px solid #e5e7eb;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.04);
+}
+
+.table-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    padding: 15px 20px;
+
+    background: #f8f9fb;
+    border-bottom: 1px solid #e5e7eb;
+}
+
+.table-header h3 {
+    margin: 0;
+    font-size: 17px;
+    font-weight: 700;
+    color: #181818;
+}
+
+.case-count {
+    color: #5f6b7a;
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.datatable-container {
+    width: 100%;
+    overflow-x: auto;
+}
+
+
+/* ================================
+   RESPONSIVE DESIGN
+================================ */
+
+@media only screen and (max-width: 768px) {
+
+    .dashboard-container {
+        padding: 12px;
+    }
+
+    .summary-card {
+        margin-bottom: 10px;
+    }
+
+    .card-value {
+        font-size: 28px;
+    }
+
+    .filter-section {
+        padding: 15px;
+    }
+
+    .action-section {
+        flex-wrap: wrap;
+    }
+
+}
+
+
+/* ================================
+   SMALL MOBILE
+================================ */
+
+@media only screen and (max-width: 480px) {
+
+    .summary-card {
+        min-height: 100px;
+        padding: 16px;
+    }
+
+    .card-value {
+        font-size: 24px;
+    }
+
+    .action-section {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+}
