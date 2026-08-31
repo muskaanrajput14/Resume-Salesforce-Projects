@@ -1,8 +1,7 @@
 public with sharing class CaseDashboardController {
 
     /*
-     * Wrapper class used to send multiple pieces
-     * of dashboard information to LWC.
+     * Wrapper class used to send multiple pieces of dashboard information to LWC.
      */
     public class DashboardWrapper {
 
@@ -26,8 +25,7 @@ public with sharing class CaseDashboardController {
     /*
      * Method used by @wire in LWC.
      *
-     * Since it is cacheable=true, Salesforce can cache
-     * the response on the client side.
+     * Since it is cacheable=true, Salesforce can cache the response on the client side.
      */
     @AuraEnabled(cacheable=true)
     public static DashboardWrapper getDashboardData() {
@@ -60,14 +58,7 @@ public with sharing class CaseDashboardController {
         ];
 
         result.cases = [
-            SELECT Id,
-                   CaseNumber,
-                   Subject,
-                   Status,
-                   Priority,
-                   Origin,
-                   CreatedDate,
-                   Owner.Name
+            SELECT Id,CaseNumber, Subject, Status, Priority, Origin, CreatedDate, Owner.Name
             FROM Case
             ORDER BY CreatedDate DESC
             LIMIT 50
@@ -92,9 +83,9 @@ public with sharing class CaseDashboardController {
         String searchPattern = '%' + searchKey + '%';
 
         String query =
-            'SELECT Id, CaseNumber, Subject, Status, ' +
-            'Priority, Origin, CreatedDate, Owner.Name ' +
-            'FROM Case WHERE Subject LIKE :searchPattern';
+            'SELECT Id, CaseNumber, Subject, Status, Priority, Origin, CreatedDate, Owner.Name ' +
+            'FROM Case' +
+            'WHERE Subject LIKE :searchPattern';
 
         if (status != null && status != 'All') {
             query += ' AND Status = :status';

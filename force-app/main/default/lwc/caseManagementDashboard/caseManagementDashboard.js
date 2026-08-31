@@ -14,9 +14,7 @@ import { refreshApex } from '@salesforce/apex';
 import { ShowToastEvent } from 'lightning/platformShowToastEvent';
 
 
-export default class CaseManagementDashboard
-    extends LightningElement {
-
+export default class CaseManagementDashboard extends LightningElement {
 
     // ============================
     // REACTIVE PROPERTIES
@@ -49,43 +47,36 @@ export default class CaseManagementDashboard
     // ============================
 
     columns = [
-
         {
             label: 'Case Number',
             fieldName: 'CaseNumber',
             type: 'text'
         },
-
         {
             label: 'Subject',
             fieldName: 'Subject',
             type: 'text'
         },
-
         {
             label: 'Status',
             fieldName: 'Status',
             type: 'text'
         },
-
         {
             label: 'Priority',
             fieldName: 'Priority',
             type: 'text'
         },
-
         {
             label: 'Origin',
             fieldName: 'Origin',
             type: 'text'
         },
-
         {
             label: 'Owner',
             fieldName: 'OwnerName',
             type: 'text'
         },
-
         {
             label: 'Created Date',
             fieldName: 'CreatedDate',
@@ -99,27 +90,22 @@ export default class CaseManagementDashboard
     // ============================
 
     statusOptions = [
-
         {
             label: 'All',
             value: 'All'
         },
-
         {
             label: 'New',
             value: 'New'
         },
-
         {
             label: 'Working',
             value: 'Working'
         },
-
         {
             label: 'Escalated',
             value: 'Escalated'
         },
-
         {
             label: 'Closed',
             value: 'Closed'
@@ -128,22 +114,18 @@ export default class CaseManagementDashboard
 
 
     priorityOptions = [
-
         {
             label: 'All',
             value: 'All'
         },
-
         {
             label: 'High',
             value: 'High'
         },
-
         {
             label: 'Medium',
             value: 'Medium'
         },
-
         {
             label: 'Low',
             value: 'Low'
@@ -168,23 +150,15 @@ export default class CaseManagementDashboard
 
             this.openCases = data.openCases;
 
-            this.highPriorityCases =
-                data.highPriorityCases;
-
-            this.closedToday =
-                data.closedToday;
-
-            this.cases =
-                this.formatCases(data.cases);
-
+            this.highPriorityCases=data.highPriorityCases;
+            this.closedToday=data.closedToday;
+            this.cases=this.formatCases(data.cases);
             this.errorMessage = null;
 
         }
 
         else if (error) {
-
             this.handleError(error);
-
         }
     }
 
@@ -194,22 +168,16 @@ export default class CaseManagementDashboard
     // ============================
 
     formatCases(caseData) {
-
         return caseData.map(caseRecord => {
-
             return {
-
                 ...caseRecord,
-
                 OwnerName:
                     caseRecord.Owner
                         ? caseRecord.Owner.Name
                         : ''
 
             };
-
         });
-
     }
 
 
@@ -218,9 +186,7 @@ export default class CaseManagementDashboard
     // ============================
 
     handleSearchChange(event) {
-
         this.searchKey = event.target.value;
-
         this.performSearch();
     }
 
@@ -230,10 +196,7 @@ export default class CaseManagementDashboard
     // ============================
 
     handleStatusChange(event) {
-
-        this.selectedStatus =
-            event.detail.value;
-
+        this.selectedStatus=event.detail.value
         this.performSearch();
     }
 
